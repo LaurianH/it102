@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>2kilometers to miles_2</title>
+</head>
+
+<body>
+<h1>Practice in Class 2_2: Kilometers to Miles Converter</h1>
+<p>The purpose of this lab is to practice using conditionals statements</p>
+
+<script>   
+// Function to convert kilometers to miles
+const kmToMiles = 0.621371;
+const milesToKm = 1.60934; // Searched online for conversion factor 
+
+let userInput = prompt("Enter the distance in kilometers:");
+
+let choice = prompt("Type 'K' to convert kilometers to miles or 'M' to convert miles to kilometers:");
+
+if (choice) {
+    choice = choice.toUpperCase(); // Convert to uppercase to handle lowercase input
+}
+
+if (choice === "K") {
+    let kmInput = prompt("Enter the distance in kilometers:"); 
+    let kilometers = parseFloat(kmInput);
+    miles = kilometers * kmToMiles; 
+    alert(kilometers + " kilometers is equal to " + miles.toFixed(2) + " miles.");
+
+} else if (choice === "M") {
+    let milesInput = prompt("Enter the distance in miles:"); 
+    let miles = parseFloat(milesInput);
+    kilometers = miles * milesToKm; 
+    alert(miles + " miles is equal to " + kilometers.toFixed(2) + " kilometers.");
+
+} else {
+    alert("Invalid choice. Please enter 'K' or 'M'.");
+}
+</script>
+</body>
+</html>
