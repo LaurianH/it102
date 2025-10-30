@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Application</title>
+</head>
+<body>
+
+<p style="color:yellow; background-color:pink">Welcome to the Job Application</p>
+
+<script>
+function main() {
+
+    function ask_for_interviewee_name() {
+        document.write("Candidate name: " + prompt("What is your name?") + "<br>");
+    }
+
+    function ask_for_interviewee_email() {
+        document.write("Candidate email address: " + prompt("What is your email address?") + "<br>");
+    }
+
+    function ask_for_startDate() {
+        document.write("Available start date: " + prompt("What is your availability?") + "<br>");
+    }
+
+    // Calls the nested functions
+    ask_for_interviewee_name();
+    ask_for_interviewee_email();
+    ask_for_startDate();
+}
+
+main();
+</script>
+
+</body>
+</html>
