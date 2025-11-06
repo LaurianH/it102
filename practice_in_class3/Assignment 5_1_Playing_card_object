@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Playing Card Object</title>
+  </head>
+  <body>
+    <h1>Playing Card Object</h1>
+    <hr />
+
+
+  <script>
+function Card(suit, rank  ){
+  //create the suit property and assign it the value from the parameter.
+    this.suit = suit;
+  //create the rank property and assign it the value from the parameter.
+    this.rank = rank;
+  //create the isVisible property and assign boolean false to it.
+    this.isVisible = false;
+  //create the show() method.  This method assigns the boolean true to this.isVisible.
+     this.show = function(){
+     			this.isVisible = true;
+     
+     
+     };
+  //create the hide() method.  This method assigns the boolean false to this.isVisible.
+    this.hide = function (){
+    			this.isVisible = false;
+    };
+  
+  } 
+  var card01 = new Card ("spades", 9);
+  var card02 = new Card ("spades", 10);
+  
+  alert(card01.suit);
+  alert(card01.rank);
+  alert(card01.rank + "of" + card02.rank);
+  alert(card02.isVisible);
+  card02.show();
+  alert(card02.isVisible);
+    card02.hide();
+    alert(card02.isVisible);
+   //output to the browser window the suit and rank of both card01 and card02.
+   document.write("Card 1: " + card01.rank + " of " + card01.suit + "<br>");
+    document.write("Card 2: " + card02.rank + " of " + card02.suit + "<br>");
+  </script>
+  
+  </body>
+</html>
