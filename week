@@ -1,0 +1,104 @@
+      <!DOCTYPE html>
+<html>
+  <body>
+    <h1>Blackjack</h1>
+
+    <script>
+        //---Playing Blackjack---
+        function Card (suit, value, points) {
+            this.suit = suit;
+            this.value = value;
+            this.points = points;
+        }
+        //---Deck of objects---
+        function Deck () {
+            this.cards = [];
+            var suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
+            var values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+            var points = [11,2,3,4,5,6,7,8,9,10,10,10,10];
+
+            for (var s = 0; s < suits.length; s++) {
+                for (var v = 0; v < values.length; v++) {
+                    this.cards.push(new Card(suits[s], values[v], points[v]));
+                }
+            }
+        }
+      //initialize all variables
+      var card = 0;
+      var total = 0;
+      var hitMe = true;
+      var dealer = 0;
+
+      //1st card
+      hitMe = prompt("Current total: " + total + "Take a card? Y/N");
+      if (hitMe == "Y"){
+        hitMe = true;
+      }else {
+        hitMe = false;
+      }
+
+      if(hitMe){
+        card = Math.ceil(11*Math.random());
+        total += card;
+      }
+
+      //2nd card
+      hitMe = prompt("Current total: " + total + "Take a card? Y/N");
+
+      if (hitMe == "Y"){
+        hitMe = true;
+      }else {
+        hitMe = false;
+      }
+
+      if(hitMe){
+        card = Math.ceil(11*Math.random());
+        total += card;
+      }
+
+      //3rd card
+      hitMe = prompt("Current total: " + total + "Take a card? Y/N");
+      if (hitMe == "Y"){
+        hitMe = true;
+      }else {
+        hitMe = false;
+      }
+
+      if(hitMe){
+        card = Math.ceil(11*Math.random());
+        total += card;
+      }
+
+      //final total
+      hitMe = prompt("Current total: " + total + "Take a card? Y/N");
+        if (hitMe == "Y"){
+            hitMe = true;
+        }else {
+            hitMe = false;
+        }
+      //dealer always takes 2 cards
+      function dealerCards(){
+      dealer = Math.ceil(11*Math.random()) + Math.ceil(11*Math.random());
+        if(hitMe){
+            card = Math.ceil(11*Math.random());
+            total += card;
+        }
+      dealer = Math.ceil(11*Math.random()) + Math.ceil(11*Math.random());
+
+      alert("Your hand is worth " + total + ". Dealer got " + dealer + ".");
+    </script>
+  </body>
+</html>
+
+      //determine winner
+      if(total > 21){
+        alert("You busted! Dealer wins.");
+      }else if(dealer > 21){
+        alert("Dealer busted! You win!");
+      }else if(total > dealer){
+        alert("You win!");
+      }else if(total < dealer){
+        alert("Dealer wins.");
+      }else{
+        alert("It's a tie!");
+      }
