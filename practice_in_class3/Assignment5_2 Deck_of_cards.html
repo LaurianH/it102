@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Playing Card Object</title>
+    <title>Deck of Cards</title>
   </head>
   <body>
-    <h1>Playing Card Object</h1>
+    <h1>Deck of Cards</h1>
     <hr />
 
-  <script>
-function Card(suit, rank  ){
-  //create the suit property and assign it the value from the parameter.
-    this.suit = suit;
-  //create the rank property and assign it the value from the parameter.
-    this.rank = rank;
-  //create the isVisible property and assign boolean false to it.
-    this.isVisible = false;
-  //create the show() method.  This method assigns the boolean true to this.isVisible.
-     this.show = function(){
-     			this.isVisible = true;
-     
-     
-     };
-  //create the hide() method.  This method assigns the boolean false to this.isVisible.
-    this.hide = function (){
-    			this.isVisible = false;
-    };
-  
-  } 
-  var card01 = new Card ("spades", 9);
-  var card02 = new Card ("spades", 10);
-  
-  alert(card01.suit);
-  alert(card01.rank);
-  alert(card01.rank + "of" + card02.rank);
-  alert(card02.isVisible);
-  card02.show();
-  alert(card02.isVisible);
-    card02.hide();
-    alert(card02.isVisible);
-   //output to the browser window the suit and rank of both card01 and card02.
-   document.write("Card 1: " + card01.rank + " of " + card01.suit + "<br>");
-    document.write("Card 2: " + card02.rank + " of " + card02.suit + "<br>");
-  </script>
-  
+    <script>
+      // Card Object Constructor
+      function Card(suit, rank) {
+        this.suit = suit;
+        this.rank = rank;
+        this.isDealt = false;
+      }
+
+      // Initialize deck
+      var deck = [];
+      var suits = ["hearts", "diamonds", "clubs", "spades"];
+      var ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+      // Create deck of 52 cards
+      for (var i = 0; i < suits.length; i++) {
+        for (var j = 0; j < ranks.length; j++) {
+          var card = new Card(suits[i], ranks[j]);
+          deck.push(card);
+        }
+      }
+
+      // Deal 3 random cards
+      var hand = [];
+      var cardCount = 0;
+
+      while (cardCount < 3) {
+        var randomIndex = Math.floor(Math.random() * deck.length);
+        var pickedCard = deck[randomIndex];
+
+        if (!pickedCard.isDealt) {
+          hand.push(pickedCard);
+          pickedCard.isDealt = true;
+          cardCount++;
+        }
+      }
+
+      // Output the hand of cards
+      document.write("Your hand of cards:<br>");
+      for (var k = 0; k < hand.length; k++) {
+        document.write(hand[k].rank + " of " + hand[k].suit + "<br>");
+      }
+    </script>
+
   </body>
 </html>
