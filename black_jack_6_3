@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Blackjack</h1>
+
+    <script>
+      // Card object
+      function Card(suit, value, points) {
+        this.suit = suit;
+        this.value = value;
+        this.points = points;
+      }
+
+      // Deck object
+      function Deck() {
+        this.cards = [];
+        var suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
+        var values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+        var points = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+
+        for (var s = 0; s < suits.length; s++) {
+          for (var v = 0; v < values.length; v++) {
+            this.cards.push(new Card(suits[s], values[v], points[v]));
+          }
+        }
+      }
+
+      // initialize game variables
+      var card = 0;
+      var total = 0;
+      var hitMe = true;
+      var dealer = 0;
+
+      // Ask player if they want a card
+      function askToHit() {
+        var response = prompt("Current total: " + total + ". Take a card? Y/N");
+        return response === "Y";
+      }
+
+      // Draw random card (1–11 for now)
+      function drawCard() {
+        return Math.ceil(11 * Math.random());
+      }
+
+      // First 3 card opportunities
+      for (var i = 0; i < 3; i++) {
+        hitMe = askToHit();
+        if (hitMe) {
+          card = drawCard();
+          total += card;
+        }
+      }
+
+      // One more chance after 3 cards
+      hitMe = askToHit();
+      if (hitMe) {
+        card = drawCard();
+        total += card;
+      }
+
+      // Dealer always takes 2 cards
+      function dealerCards() {
+        return drawCard() + drawCard();
+      }
+
+      dealer = dealerCards();
+
+      // Final result display
+      alert("Your hand is worth " + total + ". Dealer got " + dealer + ".");
+
+      // Determine winner
+      if (total > 21) {
+        alert("You busted! Dealer wins.");
+      } else if (dealer > 21) {
+        alert("Dealer busted! You win!");
+      } else if (total > dealer) {
+        alert("You win!");
+      } else if (total < dealer) {
+        alert("Dealer wins.");
+      } else {
+        alert("It's a tie!");
+      }
+    </script>
+
+  </body>
+</html>
