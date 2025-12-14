@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Java Script Quiz Project</title>
+</head>
+<body>
+
+  <h1>Simple Java Script Quiz Project</h1>
+
+  <form id="quizForm">
+
+    <p>1. What does HTML stand for?</p>
+    <input type="radio" name="q1" value="a"> Hyper Trainer Marking Language<br>
+    <input type="radio" name="q1" value="b"> Hyper Text Marketing Language<br>
+    <input type="radio" name="q1" value="c"> Hyper Text Markup Language<br>
+
+    <p>2. Which symbol is used for comments in JavaScript?</p>
+    <input type="radio" name="q2" value="a"> &lt;!-- --&gt;<br>
+    <input type="radio" name="q2" value="b"> //<br>
+    <input type="radio" name="q2" value="c"> **<br>
+
+    <p>3. Which keyword is used to declare a variable?</p>
+    <input type="radio" name="q3" value="a"> constant<br>
+    <input type="radio" name="q3" value="b"> let<br>
+    <input type="radio" name="q3" value="c"> define<br>
+
+    <br>
+    <button type="button" onclick="gradeQuiz()">Submit</button>
+
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    // Array storing correct answers
+    const correctAnswers = ["c", "b", "b"];
+
+    // Object constructor
+    function QuizResult(score, totalQuestions) {
+      this.score = score;
+      this.totalQuestions = totalQuestions;
+    }
+
+    // Method to calculate percentage
+    QuizResult.prototype.calculatePercentage = function () {
+      return (this.score / this.totalQuestions) * 100;
+    };
+
+    // Function to grade the quiz
+    function gradeQuiz() {
+      let score = 0;
+      const totalQuestions = 3;
+      const userAnswers = [];
+
+      // Input validation: ensure all questions are answered
+      for (let i = 1; i <= totalQuestions; i++) {
+        const selectedAnswer = document.querySelector(
+          `input[name="q${i}"]:checked`
+        );
+
+        if (!selectedAnswer) {
+          document.getElementById("result").innerHTML =
+            "Please answer all questions before submitting.";
+          return;
+        }
+
+        userAnswers.push(selectedAnswer.value);
+      }
+
+      // Compare answers
+      for (let i = 0; i < totalQuestions; i++) {
+        if (userAnswers[i] === correctAnswers[i]) {
+          score++;
+        }
+      }
+
+      // Create result object and display output
+      const result = new QuizResult(score, totalQuestions);
+      const percentage = result.calculatePercentage();
+
+      document.getElementById("result").innerHTML =
+        `You scored ${score} out of ${totalQuestions}.<br>
+         Percentage: ${percentage.toFixed(2)}%`;
+    }
+  </script>
+
+</body>
+</html>
